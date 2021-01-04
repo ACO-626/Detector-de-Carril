@@ -28,37 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureOriginal = new System.Windows.Forms.PictureBox();
+            this.pictureArea = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.btnImportar = new System.Windows.Forms.Button();
+            this.btnAcotar = new System.Windows.Forms.Button();
+            this.btnDetectar = new System.Windows.Forms.Button();
+            this.btnReiniciar = new System.Windows.Forms.Button();
+            this.btnAcotar2 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureOriginal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureArea)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // pictureOriginal
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.DimGray;
-            this.pictureBox1.Location = new System.Drawing.Point(23, 103);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(505, 336);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pictureOriginal.BackColor = System.Drawing.Color.DimGray;
+            this.pictureOriginal.Location = new System.Drawing.Point(23, 103);
+            this.pictureOriginal.Name = "pictureOriginal";
+            this.pictureOriginal.Size = new System.Drawing.Size(505, 318);
+            this.pictureOriginal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureOriginal.TabIndex = 0;
+            this.pictureOriginal.TabStop = false;
             // 
-            // pictureBox2
+            // pictureArea
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.DimGray;
-            this.pictureBox2.Location = new System.Drawing.Point(553, 103);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(505, 336);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
+            this.pictureArea.BackColor = System.Drawing.Color.DimGray;
+            this.pictureArea.Location = new System.Drawing.Point(553, 103);
+            this.pictureArea.Name = "pictureArea";
+            this.pictureArea.Size = new System.Drawing.Size(505, 318);
+            this.pictureArea.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureArea.TabIndex = 1;
+            this.pictureArea.TabStop = false;
             // 
             // label1
             // 
@@ -82,46 +83,60 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "ÁREA DE INTERÉS";
             // 
-            // button1
+            // btnImportar
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(23, 456);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Importar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnImportar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImportar.Location = new System.Drawing.Point(23, 456);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(75, 23);
+            this.btnImportar.TabIndex = 4;
+            this.btnImportar.Text = "Importar";
+            this.btnImportar.UseVisualStyleBackColor = true;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
-            // button2
+            // btnAcotar
             // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Location = new System.Drawing.Point(553, 456);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Limitar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnAcotar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAcotar.Location = new System.Drawing.Point(553, 456);
+            this.btnAcotar.Name = "btnAcotar";
+            this.btnAcotar.Size = new System.Drawing.Size(75, 23);
+            this.btnAcotar.TabIndex = 5;
+            this.btnAcotar.Text = "Acotar 1";
+            this.btnAcotar.UseVisualStyleBackColor = true;
+            this.btnAcotar.Click += new System.EventHandler(this.btnAcotar_Click);
             // 
-            // button3
+            // btnDetectar
             // 
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.Location = new System.Drawing.Point(104, 456);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Detectar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnDetectar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDetectar.Location = new System.Drawing.Point(104, 456);
+            this.btnDetectar.Name = "btnDetectar";
+            this.btnDetectar.Size = new System.Drawing.Size(75, 23);
+            this.btnDetectar.TabIndex = 6;
+            this.btnDetectar.Text = "Detectar";
+            this.btnDetectar.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnReiniciar
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Location = new System.Drawing.Point(453, 456);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Reiniciar";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnReiniciar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnReiniciar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReiniciar.Location = new System.Drawing.Point(453, 456);
+            this.btnReiniciar.Name = "btnReiniciar";
+            this.btnReiniciar.Size = new System.Drawing.Size(75, 23);
+            this.btnReiniciar.TabIndex = 7;
+            this.btnReiniciar.Text = "Reiniciar";
+            this.btnReiniciar.UseVisualStyleBackColor = false;
+            this.btnReiniciar.Click += new System.EventHandler(this.btnReiniciar_Click);
+            // 
+            // btnAcotar2
+            // 
+            this.btnAcotar2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAcotar2.Location = new System.Drawing.Point(634, 456);
+            this.btnAcotar2.Name = "btnAcotar2";
+            this.btnAcotar2.Size = new System.Drawing.Size(75, 23);
+            this.btnAcotar2.TabIndex = 8;
+            this.btnAcotar2.Text = "Acotar 2";
+            this.btnAcotar2.UseVisualStyleBackColor = true;
+            this.btnAcotar2.Click += new System.EventHandler(this.btnAcotar2_Click);
             // 
             // FormPrincipal
             // 
@@ -129,18 +144,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(18)))));
             this.ClientSize = new System.Drawing.Size(1085, 525);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAcotar2);
+            this.Controls.Add(this.btnReiniciar);
+            this.Controls.Add(this.btnDetectar);
+            this.Controls.Add(this.btnAcotar);
+            this.Controls.Add(this.btnImportar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureArea);
+            this.Controls.Add(this.pictureOriginal);
             this.Name = "FormPrincipal";
             this.Text = "Detector de carril";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureOriginal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureArea)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,14 +164,15 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureOriginal;
+        private System.Windows.Forms.PictureBox pictureArea;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnImportar;
+        private System.Windows.Forms.Button btnAcotar;
+        private System.Windows.Forms.Button btnDetectar;
+        private System.Windows.Forms.Button btnReiniciar;
+        private System.Windows.Forms.Button btnAcotar2;
     }
 }
 
