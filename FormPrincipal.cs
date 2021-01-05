@@ -21,8 +21,10 @@ namespace Detector_de_Carril
 
         #region Variables golobales
         Image<Bgr, byte> imgOriginal;
-        Image<Bgr, byte> imgArea;
+        //Image<Bgr, byte> imgArea;
         Image<Bgr, byte> imgRepresent;
+        Image<Hls, byte> imgArea;
+        Image<Hls, byte> imgAreaAux;
         #endregion
 
         #region Inicialización
@@ -36,7 +38,7 @@ namespace Detector_de_Carril
         #region Importar
         private void btnImportar_Click(object sender, EventArgs e)
         {
-            Importar();   
+            Importar();
         }
 
 
@@ -49,7 +51,7 @@ namespace Detector_de_Carril
                 {
                     imgOriginal = new Image<Bgr, byte>(ofd.FileName);
                     pictureOriginal.Image = imgOriginal.ToBitmap();
-                    
+
                 }
                 if (imgOriginal != null)
                     Acotar1();
@@ -66,7 +68,7 @@ namespace Detector_de_Carril
 
         private void btnReiniciar_Click(object sender, EventArgs e)
         {
-           if(pictureOriginal.Image!=null)
+            if (pictureOriginal.Image != null)
             {
                 pictureOriginal.Image.Dispose();
                 pictureOriginal.Image = null;
@@ -74,35 +76,35 @@ namespace Detector_de_Carril
                 {
                     pictureArea.Image.Dispose();
                     pictureArea.Image = null;
-                }                    
+                }
 
-            }else
+            } else
             {
-                MessageBox.Show("Cuando no se muestran imagenes previamente cargadas el programa está listo para funcionar","Reiniciado ",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Cuando no se muestran imagenes previamente cargadas el programa está listo para funcionar", "Reiniciado ", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
         }
 
         #region BotonesAcotar
         private void btnAcotar_Click(object sender, EventArgs e)
         {
-            if(imgOriginal!=null)
+            if (imgOriginal != null)
             {
                 Acotar1();
-            }else
+            } else
             {
                 Importar();
                 if (imgOriginal != null)
                     Acotar1();
-      
+
             }
         }
         private void btnAcotar2_Click(object sender, EventArgs e)
         {
-            if(imgOriginal != null)
+            if (imgOriginal != null)
             {
                 Acotar2();
-            }else
+            } else
             {
                 Importar();
                 if (imgOriginal != null)
@@ -127,9 +129,9 @@ namespace Detector_de_Carril
         #region Metodos de acotar
         private void Acotar1()
         {
-            imgRepresent = new Image<Bgr, byte>(imgOriginal.Width,imgOriginal.Height); 
+            imgRepresent = new Image<Bgr, byte>(imgOriginal.Width, imgOriginal.Height);
             //imgArea = new Image<Bgr, byte>(imgOriginal.Width, imgOriginal.Height / 2);
-            for (int i = imgOriginal.Height/2; i < imgOriginal.Height; i++)
+            for (int i = imgOriginal.Height / 2; i < imgOriginal.Height; i++)
             {
                 for (int j = 0; j < imgOriginal.Width; j++)
                 {
@@ -147,7 +149,7 @@ namespace Detector_de_Carril
             //imgArea = new Image<Bgr, byte>(imgOriginal.Width, imgOriginal.Height / 3);
             imgRepresent = new Image<Bgr, byte>(imgOriginal.Width, imgOriginal.Height);
 
-            for (int i = (imgOriginal.Height*2)/3; i < imgOriginal.Height; i++)
+            for (int i = (imgOriginal.Height * 2) / 3; i < imgOriginal.Height; i++)
             {
                 for (int j = 0; j < imgOriginal.Width; j++)
                 {
@@ -175,9 +177,70 @@ namespace Detector_de_Carril
             pictureArea.Image = imgRepresent.ToBitmap();
         }
 
-    
+        private void btnDetectar_Click(object sender, EventArgs e)
+        {
+            if (imgOriginal != null)
+            {
+                DetectaPara3();
+            } else
+            {
+                Importar();
+                DetectaPara3();
+            }
+        }
 
 
+        private void DetectaPara3()
+        {
+            //imgArea = imgRepresent.Convert<Hls, byte>();
+            imgArea = new Image<Hls, byte>(imgOriginal.Width, imgOriginal.Height);
+            imgAreaAux = imgOriginal.Convert<Hls, byte>();
+            for (int i = imgOriginal.Height - 1; i > imgOriginal.Height * 2 / 3; i--)
+            {
+                //For de los espacios 
+                for (int j = 0; j < imgOriginal.Width - 2 * (imgOriginal.Height - i); j++)
+                {
+                    if ((imgAreaAux[i, j + (imgOriginal.Height - i)].Hue < trackHue.Value && imgAreaAux[i, j + (imgOriginal.Height - i)].Hue >14) || imgAreaAux[i, j + (imgOriginal.Height - i)].Lightness>trackLuz.Value)
+                    imgArea[i, j + (imgOriginal.Height - i)] = imgAreaAux[i, j + (imgOriginal.Height - i)];
+                }
+            }
+            pictureArea.Image = imgArea.ToBitmap();
+        }
+
+        private void btnVisualizar_Click(object sender, EventArgs e)
+        {
+
+            Emgu.CV.Util.VectorOfVectorOfPoint contours = new Emgu.CV.Util.VectorOfVectorOfPoint();
+            Mat mat = new Mat();
+            CvInvoke.FindContours(imgArea.Convert<Gray,byte>(), contours, mat, Emgu.CV.CvEnum.RetrType.External, Emgu.CV.CvEnum.ChainApproxMethod.ChainApproxSimple);
+
+            for (int i = 0; i < contours.Size; i++)
+            {
+                var area = CvInvoke.ContourArea(contours[i]);
+                if (area > 50)
+                {
+                    CvInvoke.DrawContours(imgOriginal, contours, i, new MCvScalar(255, 0, 255), 10);
+                    //RotatedRect box = CvInvoke.MinAreaRect(contours[i]);
+                    //Rectangle caja = CvInvoke.BoundingRectangle(contours[i]);
+                    //CvInvoke.Rectangle(imgOriginal, caja, new MCvScalar(0, 0, 255), 2);
+                    //CvInvoke.DrawContours(imgOriginal, contours[i], 1, new MCvScalar(0, 255, 255));
+                }
+
+
+            }
+            pictureOriginal.Image = imgOriginal.ToBitmap();
+
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            labelLuz.Text = "Max Light: " + trackLuz.Value.ToString();
+        }
+
+        private void trackHue_ValueChanged(object sender, EventArgs e)
+        {
+            labelHue.Text = trackHue.Value.ToString();
+        }
     }
 }
 //int j=imgOriginal.Height;i<j;j--

@@ -38,17 +38,24 @@
             this.btnReiniciar = new System.Windows.Forms.Button();
             this.btnAcotar2 = new System.Windows.Forms.Button();
             this.btnAcotar3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnVisualizar = new System.Windows.Forms.Button();
+            this.trackLuz = new System.Windows.Forms.TrackBar();
+            this.labelLuz = new System.Windows.Forms.Label();
+            this.trackHue = new System.Windows.Forms.TrackBar();
+            this.labelHue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureOriginal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureArea)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackLuz)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackHue)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureOriginal
             // 
             this.pictureOriginal.BackColor = System.Drawing.Color.DimGray;
-            this.pictureOriginal.Location = new System.Drawing.Point(31, 127);
-            this.pictureOriginal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureOriginal.Location = new System.Drawing.Point(32, 93);
             this.pictureOriginal.Name = "pictureOriginal";
-            this.pictureOriginal.Size = new System.Drawing.Size(673, 391);
+            this.pictureOriginal.Size = new System.Drawing.Size(505, 318);
             this.pictureOriginal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureOriginal.TabIndex = 0;
             this.pictureOriginal.TabStop = false;
@@ -56,10 +63,9 @@
             // pictureArea
             // 
             this.pictureArea.BackColor = System.Drawing.Color.DimGray;
-            this.pictureArea.Location = new System.Drawing.Point(737, 127);
-            this.pictureArea.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureArea.Location = new System.Drawing.Point(552, 93);
             this.pictureArea.Name = "pictureArea";
-            this.pictureArea.Size = new System.Drawing.Size(673, 391);
+            this.pictureArea.Size = new System.Drawing.Size(505, 318);
             this.pictureArea.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureArea.TabIndex = 1;
             this.pictureArea.TabStop = false;
@@ -69,10 +75,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(25, 84);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(19, 68);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 26);
+            this.label1.Size = new System.Drawing.Size(94, 22);
             this.label1.TabIndex = 2;
             this.label1.Text = "ORIGINAL";
             // 
@@ -81,20 +86,18 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(732, 84);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(549, 68);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(211, 26);
+            this.label2.Size = new System.Drawing.Size(172, 22);
             this.label2.TabIndex = 3;
             this.label2.Text = "ÁREA DE INTERÉS";
             // 
             // btnImportar
             // 
             this.btnImportar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImportar.Location = new System.Drawing.Point(31, 561);
-            this.btnImportar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnImportar.Location = new System.Drawing.Point(23, 456);
             this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(100, 28);
+            this.btnImportar.Size = new System.Drawing.Size(75, 23);
             this.btnImportar.TabIndex = 4;
             this.btnImportar.Text = "Importar";
             this.btnImportar.UseVisualStyleBackColor = true;
@@ -103,10 +106,9 @@
             // btnAcotar
             // 
             this.btnAcotar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAcotar.Location = new System.Drawing.Point(737, 561);
-            this.btnAcotar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAcotar.Location = new System.Drawing.Point(553, 456);
             this.btnAcotar.Name = "btnAcotar";
-            this.btnAcotar.Size = new System.Drawing.Size(100, 28);
+            this.btnAcotar.Size = new System.Drawing.Size(75, 23);
             this.btnAcotar.TabIndex = 5;
             this.btnAcotar.Text = "Acotar 1";
             this.btnAcotar.UseVisualStyleBackColor = true;
@@ -115,22 +117,21 @@
             // btnDetectar
             // 
             this.btnDetectar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDetectar.Location = new System.Drawing.Point(139, 561);
-            this.btnDetectar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDetectar.Location = new System.Drawing.Point(715, 485);
             this.btnDetectar.Name = "btnDetectar";
-            this.btnDetectar.Size = new System.Drawing.Size(100, 28);
+            this.btnDetectar.Size = new System.Drawing.Size(75, 23);
             this.btnDetectar.TabIndex = 6;
-            this.btnDetectar.Text = "Detectar";
+            this.btnDetectar.Text = "Detectar 3";
             this.btnDetectar.UseVisualStyleBackColor = true;
+            this.btnDetectar.Click += new System.EventHandler(this.btnDetectar_Click);
             // 
             // btnReiniciar
             // 
             this.btnReiniciar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnReiniciar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReiniciar.Location = new System.Drawing.Point(604, 561);
-            this.btnReiniciar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReiniciar.Location = new System.Drawing.Point(453, 456);
             this.btnReiniciar.Name = "btnReiniciar";
-            this.btnReiniciar.Size = new System.Drawing.Size(100, 28);
+            this.btnReiniciar.Size = new System.Drawing.Size(75, 23);
             this.btnReiniciar.TabIndex = 7;
             this.btnReiniciar.Text = "Reiniciar";
             this.btnReiniciar.UseVisualStyleBackColor = false;
@@ -139,10 +140,9 @@
             // btnAcotar2
             // 
             this.btnAcotar2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAcotar2.Location = new System.Drawing.Point(845, 561);
-            this.btnAcotar2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAcotar2.Location = new System.Drawing.Point(634, 456);
             this.btnAcotar2.Name = "btnAcotar2";
-            this.btnAcotar2.Size = new System.Drawing.Size(100, 28);
+            this.btnAcotar2.Size = new System.Drawing.Size(75, 23);
             this.btnAcotar2.TabIndex = 8;
             this.btnAcotar2.Text = "Acotar 2";
             this.btnAcotar2.UseVisualStyleBackColor = true;
@@ -151,21 +151,91 @@
             // btnAcotar3
             // 
             this.btnAcotar3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAcotar3.Location = new System.Drawing.Point(953, 561);
-            this.btnAcotar3.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAcotar3.Location = new System.Drawing.Point(715, 456);
             this.btnAcotar3.Name = "btnAcotar3";
-            this.btnAcotar3.Size = new System.Drawing.Size(100, 28);
+            this.btnAcotar3.Size = new System.Drawing.Size(75, 23);
             this.btnAcotar3.TabIndex = 9;
             this.btnAcotar3.Text = "Acotar 3";
             this.btnAcotar3.UseVisualStyleBackColor = true;
             this.btnAcotar3.Click += new System.EventHandler(this.btnAcotar3_Click);
             // 
+            // button1
+            // 
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Location = new System.Drawing.Point(104, 456);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Detectar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnVisualizar
+            // 
+            this.btnVisualizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVisualizar.Location = new System.Drawing.Point(185, 456);
+            this.btnVisualizar.Name = "btnVisualizar";
+            this.btnVisualizar.Size = new System.Drawing.Size(75, 23);
+            this.btnVisualizar.TabIndex = 11;
+            this.btnVisualizar.Text = "Visualizar";
+            this.btnVisualizar.UseVisualStyleBackColor = true;
+            this.btnVisualizar.Click += new System.EventHandler(this.btnVisualizar_Click);
+            // 
+            // trackLuz
+            // 
+            this.trackLuz.Location = new System.Drawing.Point(795, 485);
+            this.trackLuz.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.trackLuz.Maximum = 255;
+            this.trackLuz.Name = "trackLuz";
+            this.trackLuz.Size = new System.Drawing.Size(158, 45);
+            this.trackLuz.TabIndex = 12;
+            this.trackLuz.Value = 195;
+            this.trackLuz.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            // 
+            // labelLuz
+            // 
+            this.labelLuz.AutoSize = true;
+            this.labelLuz.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLuz.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelLuz.Location = new System.Drawing.Point(802, 477);
+            this.labelLuz.Name = "labelLuz";
+            this.labelLuz.Size = new System.Drawing.Size(32, 17);
+            this.labelLuz.TabIndex = 13;
+            this.labelLuz.Text = "195";
+            // 
+            // trackHue
+            // 
+            this.trackHue.Location = new System.Drawing.Point(969, 485);
+            this.trackHue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.trackHue.Maximum = 45;
+            this.trackHue.Name = "trackHue";
+            this.trackHue.Size = new System.Drawing.Size(88, 45);
+            this.trackHue.TabIndex = 14;
+            this.trackHue.Value = 28;
+            this.trackHue.ValueChanged += new System.EventHandler(this.trackHue_ValueChanged);
+            // 
+            // labelHue
+            // 
+            this.labelHue.AutoSize = true;
+            this.labelHue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHue.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelHue.Location = new System.Drawing.Point(977, 477);
+            this.labelHue.Name = "labelHue";
+            this.labelHue.Size = new System.Drawing.Size(24, 17);
+            this.labelHue.TabIndex = 15;
+            this.labelHue.Text = "28";
+            // 
             // FormPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(18)))));
-            this.ClientSize = new System.Drawing.Size(1447, 646);
+            this.ClientSize = new System.Drawing.Size(1085, 525);
+            this.Controls.Add(this.labelHue);
+            this.Controls.Add(this.trackHue);
+            this.Controls.Add(this.labelLuz);
+            this.Controls.Add(this.trackLuz);
+            this.Controls.Add(this.btnVisualizar);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAcotar3);
             this.Controls.Add(this.btnAcotar2);
             this.Controls.Add(this.btnReiniciar);
@@ -176,11 +246,12 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureArea);
             this.Controls.Add(this.pictureOriginal);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormPrincipal";
             this.Text = "Detector de carril";
             ((System.ComponentModel.ISupportInitialize)(this.pictureOriginal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureArea)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackLuz)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackHue)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,6 +269,12 @@
         private System.Windows.Forms.Button btnReiniciar;
         private System.Windows.Forms.Button btnAcotar2;
         private System.Windows.Forms.Button btnAcotar3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnVisualizar;
+        private System.Windows.Forms.TrackBar trackLuz;
+        private System.Windows.Forms.Label labelLuz;
+        private System.Windows.Forms.TrackBar trackHue;
+        private System.Windows.Forms.Label labelHue;
     }
 }
 
