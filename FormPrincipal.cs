@@ -110,6 +110,19 @@ namespace Detector_de_Carril
             }
         }
         #endregion
+        private void btnAcotar3_Click(object sender, EventArgs e)
+        {
+            if (imgOriginal != null)
+            {
+                Acotar3();
+            }
+            else
+            {
+                Importar();
+                if (imgOriginal != null)
+                    Acotar3();
+            }
+        }
 
         #region Metodos de acotar
         private void Acotar1()
@@ -147,5 +160,25 @@ namespace Detector_de_Carril
         }
         #endregion
 
+
+        private void Acotar3()
+        {
+            imgRepresent = new Image<Bgr, byte>(imgOriginal.Width, imgOriginal.Height);
+            for (int i = imgOriginal.Height - 1; i > imgOriginal.Height * 2 / 3; i--)
+            {
+                //For de los espacios 
+                for (int j = 0; j < imgOriginal.Width - 2 * (imgOriginal.Height - i); j++)
+                {
+                    imgRepresent[i, j + (imgOriginal.Height - i)] = imgOriginal[i, j + (imgOriginal.Height - i)];
+                }
+            }
+            pictureArea.Image = imgRepresent.ToBitmap();
+        }
+
+    
+
+
     }
 }
+//int j=imgOriginal.Height;i<j;j--
+//(2 / 3) * imgOriginal.Height
