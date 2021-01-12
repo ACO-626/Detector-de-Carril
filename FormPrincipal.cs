@@ -1,22 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 //Emgu CV 3.3
-
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
-using Emgu.Util;
-using Emgu.CV.Cvb;
-using System.Runtime.InteropServices;
-
 
 namespace Detector_de_Carril
 {
@@ -392,7 +382,7 @@ namespace Detector_de_Carril
         }
         #endregion
 
-        #region AcotarVideo
+        #region Detectar camino Video
         private void DetectarCaminoenVideo(Image<Bgr,byte> imgFrame)
         {
            
@@ -451,10 +441,12 @@ namespace Detector_de_Carril
                     video.Retrieve(mFrame1);
                     video.Grab();
                     frame = mFrame1.ToImage<Bgr, byte>();
+
                     if (!mFrame1.IsEmpty)
                     {
                         //pictureOriginal.Image = frame.ToBitmap();
                         DetectarCaminoenVideo(frame);
+                        TransformaPerspectiva(frame);
                         await Task.Delay(1000 / tiempo);
 
                     }
@@ -484,6 +476,55 @@ namespace Detector_de_Carril
             Transformar();
         }
 
+
+        private void TransformaPerspectiva(Image<Bgr,byte> frameframe)
+        {
+            imgRepresent = new Image<Bgr, byte>(frameframe.Width, frameframe.Height);
+            for (int i = frameframe.Height - 1; i > frameframe.Height * 2 / 3; i--)
+            {
+                //For de los espacios 
+                for (int j = 0; j < frameframe.Width - 2 * (frameframe.Height - i); j++)
+                {
+                    imgRepresent[i, j + (frameframe.Height - i)] = frameframe[i, j + (frameframe.Height - i)];
+                }
+            }
+
+            imgRepresent = imgRepresent.Resize(pictureArea.Width, pictureArea.Height, Emgu.CV.CvEnum.Inter.Lanczos4);
+            //pictureArea.Image = imgRepresent.ToBitmap();
+
+
+            PointF[] dstCuadro = new PointF[]
+            {
+                new Point(0, 0),
+                new Point(imgRepresent.Width,0),
+                new Point(0,imgRepresent.Height),
+                new Point(pictureArea.Width,pictureArea.Height )
+
+              };
+            PointF[] srcTrapecio = new PointF[]
+            {
+                new Point((23*imgRepresent.Height/40),(2 * imgRepresent.Height/3)),
+                new Point((imgRepresent.Width - 23*imgRepresent.Height/40),(2 * imgRepresent.Height/3)),
+                new Point(0,imgRepresent.Height),
+                new Point(pictureArea.Width,pictureArea.Height)
+              };
+
+            Mat srcImg;
+            srcImg = imgRepresent.Mat;
+            Mat dstImag = new Mat();
+            Mat homo;
+
+
+
+            //homo = CvInvoke.GetAffineTransform(srcTrapecio, dstCuadro);
+            homo = CvInvoke.FindHomography(srcTrapecio, dstCuadro, HomographyMethod.Default);
+            //CvInvoke.WarpAffine(srcImg, dstImag, homo, new System.Drawing.Size(pictureArea.Width,pictureArea.Height),Inter.Nearest, Warp.InverseMap, BorderType.Replicate);
+            CvInvoke.WarpPerspective(imgRepresent, dstImag, homo, imgRepresent.Size);
+            pictureArea.Image = (dstImag.ToImage<Bgr, byte>()).ToBitmap();
+            //pictureOriginal.Image = (homo.ToImage<Bgr, byte>().ToBitmap());
+        }
+
+        #region Transformar
         private void Transformar()
         {
             imgRepresent = new Image<Bgr, byte>(imgOriginal.Width, imgOriginal.Height);
@@ -515,22 +556,7 @@ namespace Detector_de_Carril
                 new Point(0,imgRepresent.Height),
                 new Point(pictureArea.Width,pictureArea.Height)
               };
-
-
-
-            PointF[] srcs = new PointF[4];
-            srcs[0] = new Point(0, 0);
-            srcs[1] = new Point(0, imgRepresent.Width);
-            srcs[2] = new Point(imgRepresent.Height, 0);
-            srcs[3] = new Point(imgRepresent.Height, imgRepresent.Width);
-
-
-            PointF[] dsts = new PointF[4];
-            dsts[0] = new Point((2 / 3) * imgRepresent.Height, (1 / 3) * imgRepresent.Height);
-            dsts[1] = new Point(0, imgRepresent.Width);
-            dsts[2] = new Point(imgRepresent.Height, 0);
-            dsts[3] = new Point(imgRepresent.Height, imgRepresent.Width);
-
+            
             Mat srcImg;
             srcImg = imgRepresent.Mat;
             Mat dstImag = new Mat();
@@ -546,8 +572,8 @@ namespace Detector_de_Carril
             //pictureOriginal.Image = (homo.ToImage<Bgr, byte>().ToBitmap());
 
 
-            papel = pictureArea.CreateGraphics();
-            pluma.Width = 5;
+            //papel = pictureArea.CreateGraphics();
+            //pluma.Width = 5;
 
             //papel.DrawRectangle(pluma, 0, 0, 5, 5);
             //papel.DrawRectangle(pluma, imgRepresent.Width - 5, 0, 5, 5);
@@ -558,5 +584,6 @@ namespace Detector_de_Carril
             //papel.DrawRectangle(pluma, ((imgRepresent.Height / 3)), (2 * imgRepresent.Height / 3), 5, 5);
             //papel.DrawRectangle(pluma, (imgRepresent.Width - imgRepresent.Height / 3), (2 * imgRepresent.Height / 3), 5, 5);
         }
+        #endregion
     }
 }
